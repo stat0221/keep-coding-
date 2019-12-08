@@ -1,0 +1,22 @@
+# Google Co-laboratory notebook doesn't have the "Download as" drop-item in "File" menus like standalone Jyputer does.
+# How to download the notebook as PDF?
+
+# Fisrt, intall packages
+
+!apt-get install texlive texlive-xetex texlive-latex-extra pandoc
+!pip install pypandoc
+
+# Second, If you want to set your working directory, do like Linux
+% cd /content/drive/My\ Drive/Colab\ Notebooks/
+
+!pwd # You can check whether it works
+
+# Third, mount drive
+from google.colab import drive
+drive.mount('/content/drive/')
+
+# copy the files from the drive to the working directory (cuz drive is mounted as read only)
+!cp drive/My\ Drive/Colab\ Notebooks/untitled.ipynb ./
+
+# convert file as pdf
+!jupyter nbconvert --to PDF "untitled.ipynb"
